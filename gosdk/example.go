@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/goccy/go-json"
+	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
 	"github.com/vothanhdo2602/hicon/hicon-sm/model/requestmodel"
 	"github.com/vothanhdo2602/hicon/hicon-sm/sqlexecutor"
-	"github.com/vothanhdo2602/hicon/internal/orm"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/types/known/anypb"
@@ -51,7 +51,7 @@ func UpsertConfig(ctx context.Context) {
 						{Name: "deleted_at", Type: "time", SoftDelete: true},
 					},
 					RelationColumns: []*requestmodel.RelationColumn{
-						{Name: "profile", Type: orm.HasOne, RefTable: "profiles", Join: "id=user_id"},
+						{Name: "profile", Type: constant.HasOne, RefTable: "profiles", Join: "id=user_id"},
 					},
 				},
 				{

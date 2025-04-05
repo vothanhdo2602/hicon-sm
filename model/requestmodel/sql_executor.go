@@ -3,7 +3,7 @@ package requestmodel
 import (
 	"context"
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/vothanhdo2602/hicon/external/constant"
+	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
 	"google.golang.org/grpc"
 )
 

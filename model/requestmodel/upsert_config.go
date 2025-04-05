@@ -2,7 +2,7 @@ package requestmodel
 
 import (
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/vothanhdo2602/hicon/external/constant"
+	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
 )
 
 // Option is a functional configuration option type
