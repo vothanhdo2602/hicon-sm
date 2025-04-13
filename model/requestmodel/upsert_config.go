@@ -2,11 +2,8 @@ package requestmodel
 
 import (
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
+	"github.com/vothanhdo2602/hicon-go/hicon-sm/constant"
 )
-
-// Option is a functional configuration option type
-type Option func(config *UpsertConfig)
 
 type Credential struct {
 	AccessKey string `json:"access_key"`
@@ -91,56 +88,4 @@ func (s *DBConfig) Validate() error {
 		validation.Field(&s.Port, validation.Min(1), validation.Max(65535)),
 		validation.Field(&s.MaxCons, validation.Min(1)),
 	)
-}
-
-// NewUpsertConfig New creates a new NewUpsertConfig with default settings
-func (s *HiconClient) NewUpsertConfig() *UpsertConfig {
-	return &UpsertConfig{}
-}
-
-// WithDebug enables or disables debug mode
-func WithDebug(debug bool) Option {
-	return func(c *UpsertConfig) {
-		c.Debug = debug
-	}
-}
-
-// WithDisableCache toggles cache functionality
-func WithDisableCache(disable bool) Option {
-	return func(c *UpsertConfig) {
-		c.DisableCache = disable
-	}
-}
-
-// WithDBConfig WithDB Database configuration methods
-func WithDBConfig(dbConfig *DBConfig) Option {
-	return func(c *UpsertConfig) {
-		c.DBConfig = dbConfig
-	}
-}
-
-// WithRedis Redis configuration methods
-func WithRedis(redis *Redis) Option {
-	return func(c *UpsertConfig) {
-		c.Redis = redis
-	}
-}
-
-// WithTable adds a table configuration
-func WithTable(name string, columns []*Column, relations []*RelationColumn) Option {
-	return func(c *UpsertConfig) {
-		c.TableConfigs = append(c.TableConfigs, &TableConfig{
-			Name:            name,
-			Columns:         columns,
-			RelationColumns: relations,
-		})
-	}
-}
-
-// Build finalizes the configuration
-func (s *UpsertConfig) Build(opts ...Option) *UpsertConfig {
-	for _, opt := range opts {
-		opt(s)
-	}
-	return s
 }

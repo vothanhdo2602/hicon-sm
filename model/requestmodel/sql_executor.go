@@ -1,56 +1,14 @@
 package requestmodel
 
 import (
-	"context"
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
-	"google.golang.org/grpc"
+	"github.com/vothanhdo2602/hicon-go/hicon-sm/constant"
 )
-
-var (
-	client *HiconClient
-)
-
-type HiconClient struct {
-	conn *grpc.ClientConn
-}
-
-func NewHiconClient(ctx context.Context, addr string, accessKey, secretKey string) (*HiconClient, error) {
-	var (
-	//req = &Credential{
-	//	AccessKey: accessKey,
-	//	SecretKey: secretKey,
-	//}
-	)
-
-	//newConn, err := grpc.NewClient(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	//if err != nil {
-	//	return nil, err
-	//}
-
-	//reqBytes, err := json.Marshal(req)
-	//if err != nil {
-	//	return nil, err
-	//}
-
-	//resp, err := sqlexecutor.NewSQLExecutorClient(newConn).Connect(ctx, &anypb.Any{Value: reqBytes})
-	//if err != nil {
-	//	return nil, err
-	//}
-
-	//if resp.Message != "" {
-	//	return nil, errors.New(resp.Message)
-	//}
-	//
-	//client = &HiconClient{conn: newConn}
-
-	return client, nil
-}
 
 type FindByPK struct {
 	Table               string
 	DisableCache        bool
-	Select              []string
+	Selects             []string
 	Data                interface{}
 	WhereAllWithDeleted bool
 }
@@ -66,10 +24,10 @@ func (s *FindByPK) Validate() error {
 type FindOne struct {
 	Table               string
 	DisableCache        bool
-	Select              []string
+	Selects             []string
 	Where               []*QueryWithArgs
 	Relations           []string
-	Join                []*Join
+	Joins               []*Join
 	Offset              int
 	OrderBy             []string
 	WhereAllWithDeleted bool
@@ -85,7 +43,7 @@ func (s *FindOne) Validate() error {
 type FindAll struct {
 	Table               string
 	DisableCache        bool
-	Select              []string
+	Selects             []string
 	Where               []*QueryWithArgs
 	Relations           []string
 	Joins               []*Join
@@ -156,7 +114,6 @@ type UpdateAll struct {
 	// The later task with the same lock key in the same time will not execute and get the result from the first task
 	LockKey             string
 	Table               string
-	Data                interface{}
 	Where               []*QueryWithArgs
 	Set                 []*QueryWithArgs
 	WhereAllWithDeleted bool
@@ -167,9 +124,8 @@ func (s *UpdateAll) Validate() error {
 	return validation.ValidateStruct(
 		s,
 		validation.Field(&s.Table, validation.Required),
-		validation.Field(&s.Data, validation.Required),
 		validation.Field(&s.Where, validation.Required),
-		validation.Field(&s.Set, validation.Required),
+		validation.Field(&s.set, validation.Required),
 	)
 }
 
@@ -179,6 +135,7 @@ type BulkUpdateByPK struct {
 	LockKey      string      `json:"lock_key"`
 	Table        string      `json:"table"`
 	Set          []string    `json:"set"`
+	Where        []string    `json:"where"`
 	Data         interface{} `json:"data"`
 	DisableCache bool        `json:"disable_cache"`
 }
@@ -199,7 +156,7 @@ type DeleteByPK struct {
 	Data         interface{}
 	Where        []*QueryWithArgs
 	DisableCache bool
-	ForceDelete  bool
+	ForceDelete  bool // if enable soft delete in table
 }
 
 func (s *DeleteByPK) Validate() error {
