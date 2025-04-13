@@ -2,7 +2,7 @@ package requestmodel
 
 import (
 	validation "github.com/go-ozzo/ozzo-validation"
-	"github.com/vothanhdo2602/hicon-go/hicon-sm/constant"
+	"github.com/vothanhdo2602/hicon/hicon-sm/constant"
 )
 
 type FindByPK struct {
