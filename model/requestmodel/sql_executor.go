@@ -125,7 +125,7 @@ func (s *UpdateAll) Validate() error {
 		s,
 		validation.Field(&s.Table, validation.Required),
 		validation.Field(&s.Where, validation.Required),
-		validation.Field(&s.set, validation.Required),
+		validation.Field(&s.Set, validation.Required),
 	)
 }
 
@@ -199,8 +199,7 @@ func (s *Operation) Validate() error {
 			),
 		),
 		validation.Field(
-			&s.Data,
-			validation.Required,
+			&s.Data, validation.Required,
 		),
 	)
 }
