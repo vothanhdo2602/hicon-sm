@@ -13,12 +13,12 @@
 ## Features
 
 - [x] Built-in query builder based on BunORM for security.
-- [x] GRPC.
-- [x] Combine identical queries into single query in the same time.
+- [x] Communicate through GRPC.
+- [x] Combine identical queries in the same time into single query.
 - [x] Cache connections in pool.
 - [x] Support for multi DBs: MySQL, Postgresql.
 - [x] Connect with your Redis for better performance.
-- [x] Optimized Redis cache size memory if using built-in query builder.
+- [x] Optimized Redis cache size.
 - [x] Client SDK for Node.js, Golang.
 - [x] Disable cache at global and per request.
 - [x] Custom your lock key with write actions.
