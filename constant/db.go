@@ -14,3 +14,12 @@ const (
 	HasMany       = "has-many"
 	HasManyToMany = "has-many-to-many"
 )
+
+const (
+	ColumnTypeString    = "string" // "text", "varchar", "char"
+	ColumnTypeTimestamp = "timestamp"
+	ColumnTypeInteger   = "int"
+	ColumnTypeFloat     = "float"
+	ColumnTypeBoolean   = "boolean"
+	ColumnTypeJSON      = "json"
+)
