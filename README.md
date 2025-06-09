@@ -35,3 +35,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] OpenTelemetry.
 - [ ] Optimize for pagination.
 - [ ] Debug logging with your X-Request-Id.
+
+
+## Important
+
+Hicon is still in beta version. Please use it carefully.

@@ -17,7 +17,7 @@ const (
 	HasOne        RelationType = "has-one"
 	BelongsTo     RelationType = "belongs-to"
 	HasMany       RelationType = "has-many"
-	HasManyToMany RelationType = "has-many-to-many"
+	HasManyToMany RelationType = "m2m"
 )
 
 type ColumnType string
